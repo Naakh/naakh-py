@@ -69,7 +69,6 @@ class TranslatedtextApi(object):
 
         all_params = ['uuid', 'oauth_consumer_key']
         all_params.append('callback')
-
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
@@ -149,7 +148,7 @@ class TranslatedtextApi(object):
                  returns the request thread.
         """
 
-        all_params = ['uuid', 'translated_text_update_payload']
+        all_params = ['uuid', 'translated_text_update_payload', 'oauth_consumer_key']
         all_params.append('callback')
 
         params = locals()
@@ -177,6 +176,8 @@ class TranslatedtextApi(object):
             path_params['uuid'] = params['uuid']
 
         query_params = {}
+        if 'oauth_consumer_key' in params:
+            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
 
