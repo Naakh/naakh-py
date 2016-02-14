@@ -48,7 +48,7 @@ except ImportError:
 
 from .configuration import Configuration
 
-import pdb
+
 class ApiClient(object):
     """
     Generic API client for Swagger client library builds.
@@ -152,7 +152,6 @@ class ApiClient(object):
 
         # deserialize response data
         if response_type:
-            pdb.set_trace()
             deserialized_data = self.deserialize(response_data, response_type)
         else:
             deserialized_data = None
@@ -231,7 +230,6 @@ class ApiClient(object):
         """
         # handle file downloading
         # save response body into a tmp file and return the instance
-        pdb.set_trace()
         if "file" == response_type:
             return self.__deserialize_file(response)
 
