@@ -572,6 +572,12 @@ class ApiClient(object):
                and instance.attribute_map[attr] in data\
                and isinstance(data, (list, dict)):
                 value = data[instance.attribute_map[attr]]
-                setattr(instance, attr, self.__deserialize(value, attr_type))
+
+                if attr_type == 'Metadata':
+                    # Small hack. Because the generated code does not handle
+                    # the metadata object well
+                    setattr(instance, attr, value)
+                else:
+                    setattr(instance, attr, self.__deserialize(value, attr_type))
 
         return instance
