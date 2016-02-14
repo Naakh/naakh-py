@@ -80,7 +80,7 @@ class LangaugesApi(object):
         del params['kwargs']
 
 
-        resource_path = '/langauges/'.replace('{format}', 'json')
+        resource_path = '/languages/'.replace('{format}', 'json')
         method = 'GET'
 
         path_params = {}
