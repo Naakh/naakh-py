@@ -69,6 +69,7 @@ class TranslatedtextApi(object):
 
         all_params = ['uuid', 'oauth_consumer_key']
         all_params.append('callback')
+
         params = locals()
         for key, val in iteritems(params['kwargs']):
             if key not in all_params:
@@ -126,7 +127,7 @@ class TranslatedtextApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def update_translated_text(self, uuid, translated_text_update_payload, **kwargs):
+    def update_translated_text(self, uuid, translated_text_update_payload, oauth_consumer_key, **kwargs):
         """
         
         Updates the translated_text
@@ -137,12 +138,13 @@ class TranslatedtextApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.update_translated_text(uuid, translated_text_update_payload, callback=callback_function)
+        >>> thread = api.update_translated_text(uuid, translated_text_update_payload, oauth_consumer_key, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str uuid: Uuid (required)
         :param TranslatedTextUpdatePayload translated_text_update_payload: Metadata (required)
+        :param str oauth_consumer_key: oauth_consumer_key (required)
         :return: TranslatedText
                  If the method is called asynchronously,
                  returns the request thread.
@@ -167,6 +169,9 @@ class TranslatedtextApi(object):
         # verify the required parameter 'translated_text_update_payload' is set
         if ('translated_text_update_payload' not in params) or (params['translated_text_update_payload'] is None):
             raise ValueError("Missing the required parameter `translated_text_update_payload` when calling `update_translated_text`")
+        # verify the required parameter 'oauth_consumer_key' is set
+        if ('oauth_consumer_key' not in params) or (params['oauth_consumer_key'] is None):
+            raise ValueError("Missing the required parameter `oauth_consumer_key` when calling `update_translated_text`")
 
         resource_path = '/translatedtext/{uuid}'.replace('{format}', 'json')
         method = 'POST'

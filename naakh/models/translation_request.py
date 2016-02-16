@@ -39,10 +39,14 @@ class TranslationRequest(object):
         self.swagger_types = {
             'client': 'str',
             'created_at': 'datetime',
+            'instructions': 'str',
             'metadata': 'Metadata',
             'source_language': 'str',
+            'target_audience': 'str',
             'target_languages': 'list[str]',
             'text': 'str',
+            'tone': 'str',
+            'topics': 'list[str]',
             'translation_progress': 'list[TranslationProgress]',
             'uuid': 'str'
         }
@@ -50,20 +54,28 @@ class TranslationRequest(object):
         self.attribute_map = {
             'client': 'client',
             'created_at': 'created_at',
+            'instructions': 'instructions',
             'metadata': 'metadata',
             'source_language': 'source_language',
+            'target_audience': 'target_audience',
             'target_languages': 'target_languages',
             'text': 'text',
+            'tone': 'tone',
+            'topics': 'topics',
             'translation_progress': 'translation_progress',
             'uuid': 'uuid'
         }
 
         self._client = None
         self._created_at = None
+        self._instructions = None
         self._metadata = None
         self._source_language = None
+        self._target_audience = None
         self._target_languages = None
         self._text = None
+        self._tone = None
+        self._topics = None
         self._translation_progress = None
         self._uuid = None
 
@@ -112,6 +124,28 @@ class TranslationRequest(object):
         self._created_at = created_at
 
     @property
+    def instructions(self):
+        """
+        Gets the instructions of this TranslationRequest.
+
+
+        :return: The instructions of this TranslationRequest.
+        :rtype: str
+        """
+        return self._instructions
+
+    @instructions.setter
+    def instructions(self, instructions):
+        """
+        Sets the instructions of this TranslationRequest.
+
+
+        :param instructions: The instructions of this TranslationRequest.
+        :type: str
+        """
+        self._instructions = instructions
+
+    @property
     def metadata(self):
         """
         Gets the metadata of this TranslationRequest.
@@ -156,6 +190,28 @@ class TranslationRequest(object):
         self._source_language = source_language
 
     @property
+    def target_audience(self):
+        """
+        Gets the target_audience of this TranslationRequest.
+
+
+        :return: The target_audience of this TranslationRequest.
+        :rtype: str
+        """
+        return self._target_audience
+
+    @target_audience.setter
+    def target_audience(self, target_audience):
+        """
+        Sets the target_audience of this TranslationRequest.
+
+
+        :param target_audience: The target_audience of this TranslationRequest.
+        :type: str
+        """
+        self._target_audience = target_audience
+
+    @property
     def target_languages(self):
         """
         Gets the target_languages of this TranslationRequest.
@@ -198,6 +254,50 @@ class TranslationRequest(object):
         :type: str
         """
         self._text = text
+
+    @property
+    def tone(self):
+        """
+        Gets the tone of this TranslationRequest.
+
+
+        :return: The tone of this TranslationRequest.
+        :rtype: str
+        """
+        return self._tone
+
+    @tone.setter
+    def tone(self, tone):
+        """
+        Sets the tone of this TranslationRequest.
+
+
+        :param tone: The tone of this TranslationRequest.
+        :type: str
+        """
+        self._tone = tone
+
+    @property
+    def topics(self):
+        """
+        Gets the topics of this TranslationRequest.
+
+
+        :return: The topics of this TranslationRequest.
+        :rtype: list[str]
+        """
+        return self._topics
+
+    @topics.setter
+    def topics(self, topics):
+        """
+        Sets the topics of this TranslationRequest.
+
+
+        :param topics: The topics of this TranslationRequest.
+        :type: list[str]
+        """
+        self._topics = topics
 
     @property
     def translation_progress(self):

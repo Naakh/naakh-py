@@ -7,4 +7,4 @@ from .tones_api import TonesApi
 from .oauth_api import OauthApi
 from .topics_api import TopicsApi
 from .translate_api import TranslateApi
-from .langauges_api import LangaugesApi
+from .languages_api import LanguagesApi
