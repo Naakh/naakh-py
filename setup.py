@@ -22,11 +22,12 @@ setup(
     version=VERSION,
     description="Naakh Translations",
     author_email="rohitsalim@gmail.com",
-    url="",
     keywords=["Swagger", "Naakh Translations"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
+    url="https://github.com/Naakh/naakh-py",
+    download_url="https://github.com/Naakh/naakh-py/tarball/0.1",
     long_description="""\
     This is the python library that developers can use to query the Naakh API
     """
