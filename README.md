@@ -2,7 +2,8 @@
 
 This is a python client that can be used to interact with the [Naakh API][https://www.naakh.in].
 
-Here is some sample code that shows how you can use the API. 
+Here is a simple management command that goes on to test each and every one of the client methods. It should give you an idea on how to use the API. 
+
 <pre></code>
 import time
 import naakh
