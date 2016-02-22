@@ -27,7 +27,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     url="https://github.com/Naakh/naakh-py",
-    download_url="https://github.com/Naakh/naakh-py/tarball/0.1",
+    download_url="https://github.com/Naakh/naakh-py/tarball/0.0.3",
     long_description="""\
     This is the python library that developers can use to query the Naakh API
     """
