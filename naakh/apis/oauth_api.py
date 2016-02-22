@@ -61,13 +61,12 @@ class OauthApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param AccessTokenCreationPayload access_token_payload: This is the payload required to generate an access token that can be used by the client. (required)
-        :param str oauth_consumer_key: The access token required to access the Naakh API
         :return: AccessTokenResponsePayload
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['access_token_payload', 'oauth_consumer_key']
+        all_params = ['access_token_payload']
         all_params.append('callback')
 
         params = locals()
@@ -90,8 +89,6 @@ class OauthApi(object):
         path_params = {}
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
 

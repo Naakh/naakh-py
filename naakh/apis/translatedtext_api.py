@@ -45,7 +45,7 @@ class TranslatedtextApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def get_translated_text(self, uuid, **kwargs):
+    def get_translated_text(self, uuid, authorization, **kwargs):
         """
         
         Get translated text
@@ -56,18 +56,18 @@ class TranslatedtextApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.get_translated_text(uuid, callback=callback_function)
+        >>> thread = api.get_translated_text(uuid, authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str uuid: Uuid (required)
-        :param str oauth_consumer_key: access token value
+        :param str authorization: The access token required to access the API (required)
         :return: TranslatedText
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uuid', 'oauth_consumer_key']
+        all_params = ['uuid', 'authorization']
         all_params.append('callback')
 
         params = locals()
@@ -83,6 +83,9 @@ class TranslatedtextApi(object):
         # verify the required parameter 'uuid' is set
         if ('uuid' not in params) or (params['uuid'] is None):
             raise ValueError("Missing the required parameter `uuid` when calling `get_translated_text`")
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `get_translated_text`")
 
         resource_path = '/translatedtext/{uuid}'.replace('{format}', 'json')
         method = 'GET'
@@ -92,10 +95,10 @@ class TranslatedtextApi(object):
             path_params['uuid'] = params['uuid']
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}
@@ -127,7 +130,7 @@ class TranslatedtextApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def update_translated_text(self, uuid, translated_text_update_payload, oauth_consumer_key, **kwargs):
+    def update_translated_text(self, uuid, translated_text_update_payload, authorization, **kwargs):
         """
         
         Updates the translated_text
@@ -138,19 +141,19 @@ class TranslatedtextApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.update_translated_text(uuid, translated_text_update_payload, oauth_consumer_key, callback=callback_function)
+        >>> thread = api.update_translated_text(uuid, translated_text_update_payload, authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str uuid: Uuid (required)
         :param TranslatedTextUpdatePayload translated_text_update_payload: Metadata (required)
-        :param str oauth_consumer_key: oauth_consumer_key (required)
+        :param str authorization: The access token required for API access (required)
         :return: TranslatedText
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uuid', 'translated_text_update_payload', 'oauth_consumer_key']
+        all_params = ['uuid', 'translated_text_update_payload', 'authorization']
         all_params.append('callback')
 
         params = locals()
@@ -169,9 +172,9 @@ class TranslatedtextApi(object):
         # verify the required parameter 'translated_text_update_payload' is set
         if ('translated_text_update_payload' not in params) or (params['translated_text_update_payload'] is None):
             raise ValueError("Missing the required parameter `translated_text_update_payload` when calling `update_translated_text`")
-        # verify the required parameter 'oauth_consumer_key' is set
-        if ('oauth_consumer_key' not in params) or (params['oauth_consumer_key'] is None):
-            raise ValueError("Missing the required parameter `oauth_consumer_key` when calling `update_translated_text`")
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `update_translated_text`")
 
         resource_path = '/translatedtext/{uuid}'.replace('{format}', 'json')
         method = 'POST'
@@ -181,10 +184,10 @@ class TranslatedtextApi(object):
             path_params['uuid'] = params['uuid']
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}

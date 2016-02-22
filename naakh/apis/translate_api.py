@@ -45,10 +45,10 @@ class TranslateApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def create(self, translation_request_request, **kwargs):
+    def create_translation_request(self, translation_request_creation_payload, authorization, **kwargs):
         """
-        Translate content
-        Creates a new translation request
+        Creates a new Translation Request
+        Create translation request
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
@@ -56,18 +56,18 @@ class TranslateApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.create(translation_request_request, callback=callback_function)
+        >>> thread = api.create_translation_request(translation_request_creation_payload, authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param TranslationRequestCreationPayload translation_request_request: The required payload to queue up content for translation (required)
-        :param str oauth_consumer_key: This is the access_token that is required to make any api calls
+        :param TranslationRequestCreationPayload translation_request_creation_payload: TranslationRequestCreationPayload (required)
+        :param str authorization: Access token required to access the API (required)
         :return: TranslationRequest
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['translation_request_request', 'oauth_consumer_key']
+        all_params = ['translation_request_creation_payload', 'authorization']
         all_params.append('callback')
 
         params = locals()
@@ -75,14 +75,17 @@ class TranslateApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method create" % key
+                    " to method create_translation_request" % key
                 )
             params[key] = val
         del params['kwargs']
 
-        # verify the required parameter 'translation_request_request' is set
-        if ('translation_request_request' not in params) or (params['translation_request_request'] is None):
-            raise ValueError("Missing the required parameter `translation_request_request` when calling `create`")
+        # verify the required parameter 'translation_request_creation_payload' is set
+        if ('translation_request_creation_payload' not in params) or (params['translation_request_creation_payload'] is None):
+            raise ValueError("Missing the required parameter `translation_request_creation_payload` when calling `create_translation_request`")
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `create_translation_request`")
 
         resource_path = '/translate/'.replace('{format}', 'json')
         method = 'POST'
@@ -90,17 +93,17 @@ class TranslateApi(object):
         path_params = {}
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}
 
         body_params = None
-        if 'translation_request_request' in params:
-            body_params = params['translation_request_request']
+        if 'translation_request_creation_payload' in params:
+            body_params = params['translation_request_creation_payload']
 
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\

@@ -45,7 +45,7 @@ class TranslationApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def get_translation(self, uuid, **kwargs):
+    def get_translation(self, uuid, authorization, **kwargs):
         """
         This is to retrieve a translation that has been queued up (via TranslationRequest uuid)
         Retrieves the translation via UUID
@@ -56,18 +56,18 @@ class TranslationApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.get_translation(uuid, callback=callback_function)
+        >>> thread = api.get_translation(uuid, authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str uuid: Uuid (required)
-        :param str oauth_consumer_key: oauth_consumer_key
+        :param str authorization: Access token required to access the API (required)
         :return: TranslationRequest
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uuid', 'oauth_consumer_key']
+        all_params = ['uuid', 'authorization']
         all_params.append('callback')
 
         params = locals()
@@ -83,6 +83,9 @@ class TranslationApi(object):
         # verify the required parameter 'uuid' is set
         if ('uuid' not in params) or (params['uuid'] is None):
             raise ValueError("Missing the required parameter `uuid` when calling `get_translation`")
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `get_translation`")
 
         resource_path = '/translation/{uuid}/'.replace('{format}', 'json')
         method = 'GET'
@@ -92,10 +95,10 @@ class TranslationApi(object):
             path_params['uuid'] = params['uuid']
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}
@@ -127,7 +130,7 @@ class TranslationApi(object):
                                             callback=params.get('callback'))
         return response
 
-    def update_translation(self, uuid, translation_request_request, **kwargs):
+    def update_translation_request(self, uuid, translation_request_creation_payload, authorization, **kwargs):
         """
         
         Update a given translation defined by uuid
@@ -138,19 +141,19 @@ class TranslationApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.update_translation(uuid, translation_request_request, callback=callback_function)
+        >>> thread = api.update_translation_request(uuid, translation_request_creation_payload, authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str uuid: Uuid (required)
-        :param TranslationRequestCreationPayload translation_request_request: The TranslationRequest Attributes that can be updated (required)
-        :param str oauth_consumer_key: This is the access_token that is required to make any api calls
+        :param TranslationRequestCreationPayload translation_request_creation_payload: The TranslationRequest Attributes that can be updated (required)
+        :param str authorization: The access token required to access the API (required)
         :return: TranslationRequest
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['uuid', 'translation_request_request', 'oauth_consumer_key']
+        all_params = ['uuid', 'translation_request_creation_payload', 'authorization']
         all_params.append('callback')
 
         params = locals()
@@ -158,17 +161,20 @@ class TranslationApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method update_translation" % key
+                    " to method update_translation_request" % key
                 )
             params[key] = val
         del params['kwargs']
 
         # verify the required parameter 'uuid' is set
         if ('uuid' not in params) or (params['uuid'] is None):
-            raise ValueError("Missing the required parameter `uuid` when calling `update_translation`")
-        # verify the required parameter 'translation_request_request' is set
-        if ('translation_request_request' not in params) or (params['translation_request_request'] is None):
-            raise ValueError("Missing the required parameter `translation_request_request` when calling `update_translation`")
+            raise ValueError("Missing the required parameter `uuid` when calling `update_translation_request`")
+        # verify the required parameter 'translation_request_creation_payload' is set
+        if ('translation_request_creation_payload' not in params) or (params['translation_request_creation_payload'] is None):
+            raise ValueError("Missing the required parameter `translation_request_creation_payload` when calling `update_translation_request`")
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `update_translation_request`")
 
         resource_path = '/translation/{uuid}/'.replace('{format}', 'json')
         method = 'POST'
@@ -178,17 +184,17 @@ class TranslationApi(object):
             path_params['uuid'] = params['uuid']
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}
 
         body_params = None
-        if 'translation_request_request' in params:
-            body_params = params['translation_request_request']
+        if 'translation_request_creation_payload' in params:
+            body_params = params['translation_request_creation_payload']
 
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\

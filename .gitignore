@@ -1,3 +1,4 @@
 .pypirc
 naakh.egg-info
 dist
+*.pyc

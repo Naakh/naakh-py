@@ -45,7 +45,7 @@ class TopicsApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def get_all_topics(self, **kwargs):
+    def get_all_topics(self, authorization, **kwargs):
         """
         
         Gets a list of topics that you can attach to a given translation
@@ -56,17 +56,17 @@ class TopicsApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.get_all_topics(callback=callback_function)
+        >>> thread = api.get_all_topics(authorization, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str oauth_consumer_key: The access token required to access the Naakh API
+        :param str authorization: Access token required to access the API (required)
         :return: TopicsResource
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['oauth_consumer_key']
+        all_params = ['authorization']
         all_params.append('callback')
 
         params = locals()
@@ -79,6 +79,9 @@ class TopicsApi(object):
             params[key] = val
         del params['kwargs']
 
+        # verify the required parameter 'authorization' is set
+        if ('authorization' not in params) or (params['authorization'] is None):
+            raise ValueError("Missing the required parameter `authorization` when calling `get_all_topics`")
 
         resource_path = '/topics/'.replace('{format}', 'json')
         method = 'GET'
@@ -86,10 +89,10 @@ class TopicsApi(object):
         path_params = {}
 
         query_params = {}
-        if 'oauth_consumer_key' in params:
-            query_params['oauth_consumer_key'] = params['oauth_consumer_key']
 
         header_params = {}
+        if 'authorization' in params:
+            header_params['authorization'] = params['authorization']
 
         form_params = {}
         files = {}

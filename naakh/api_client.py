@@ -81,7 +81,7 @@ class ApiClient(object):
             self.host = host
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'Python-Swagger/0.0.2'
+        self.user_agent = 'Python-Swagger/0.0.3'
 
     @property
     def user_agent(self):
@@ -572,11 +572,6 @@ class ApiClient(object):
                and instance.attribute_map[attr] in data\
                and isinstance(data, (list, dict)):
                 value = data[instance.attribute_map[attr]]
+                setattr(instance, attr, self.__deserialize(value, attr_type))
 
-                if attr_type == 'Metadata':
-                    # Small hack. Because the generated code does not handle
-                    # the metadata object well
-                    setattr(instance, attr, value)
-                else:
-                    setattr(instance, attr, self.__deserialize(value, attr_type))
         return instance
