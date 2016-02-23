@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "naakh"
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 
 
 
@@ -21,13 +21,14 @@ setup(
     name=NAME,
     version=VERSION,
     description="Naakh Translations",
+    author="Rohith Salim",
     author_email="rohitsalim@gmail.com",
     keywords=["Swagger", "Naakh Translations"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
     url="https://github.com/Naakh/naakh-py",
-    download_url="https://github.com/Naakh/naakh-py/tarball/0.0.3",
+    download_url="https://github.com/Naakh/naakh-py/tarball/0.0.4",
     long_description="""\
     This is the python library that developers can use to query the Naakh API
     """
